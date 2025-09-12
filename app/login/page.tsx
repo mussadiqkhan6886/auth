@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { axios } from "axios"
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 const Login = () => {
 
@@ -16,7 +16,7 @@ const Login = () => {
 
   }
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUser({...user, [e.target.name]: e.target.value})
   }
 
@@ -26,9 +26,9 @@ const Login = () => {
       <hr />
       <form className="min-w-[500px] flex flex-col gap-2">
         <label htmlFor="password">Password: </label>
-        <input type="text" id="password" placeholder="6886" name="password" onChange={handleChange} value={user.password} className="outline-none w-full border border-gray-500 px-3 py-1" />
+        <input type="text" id="password" placeholder="6886" name="password" onChange={handleChange} value={user.password} className="outline-none w-full border border-gray-500 px-3 py-1.5" />
         <label htmlFor="email">Email: </label>
-        <input type="text" id="email" placeholder="mussadiqkhan@gmail.com" name="email" onChange={handleChange} value={user.email} className="outline-none w-full border border-gray-500 px-3 py-1" />
+        <input type="text" id="email" placeholder="mussadiqkhan@gmail.com" name="email" onChange={handleChange} value={user.email} className="outline-none w-full border border-gray-500 px-3 py-1.5" />
         <button className="px-4 mt-5 hover:bg-gray-800 py-1.5 border border-gray-600 text-white" onClick={logIn}>Login</button>
         <Link className="text-center" href={"/signup"}>Signup page</Link>
       </form>
