@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { axios } from "axios"
 import { ChangeEvent, useState } from "react";
 
 const Signup = () => {
