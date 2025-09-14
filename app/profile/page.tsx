@@ -1,8 +1,8 @@
 import React from 'react'
 
-const page = () => {
+const Profile = () => {
   return (
-    <div className='bg-gray-900 flex flex-col justify-center items-center '>
+    <div className='bg-gray-900 min-h-screen flex flex-col justify-center items-center '>
       <h1 className='text-white text-4xl'>Profile</h1>
       <hr />
       <p className='text-gray-100'>Profile Page</p>
@@ -10,4 +10,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Profile
