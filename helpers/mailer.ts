@@ -16,14 +16,16 @@ export const sendEmail = async ({email, emailType, userId}: any) => {
          await User.findByIdAndUpdate(userId, {forgotPasswordToken: hashToken, forgotPasswordTokenExpiry: Date.now() + 3600000})
        }
 
-       const transporter = nodemailer.createTransport({
-        host: ,
-        port: ,
+       // Create a test account or replace with real credentials.
+        const transporter = nodemailer.createTransport({
+        host: "smtp.ethereal.email",
+        port: 587,
+        secure: false, // true for 465, false for other ports
         auth: {
-            user: '',
-            auth: ''
-        }
-       })
+            user: "maddison53@ethereal.email",
+            pass: "jn7jnAPss4f63QBp6D",
+        },
+        });
 
        const mailOptions = {
         from: "mussadiqkhan6886@gmail.com",
@@ -32,7 +34,7 @@ export const sendEmail = async ({email, emailType, userId}: any) => {
         html: `<p>Click <a href="${process.env.DOMAIN}/verifyemail?token=${hashToken}">here</a> to ${emailType === "VERIFY" ? "Verify your email": "Reset your password"}`
        }
 
-       const mailResponse = await transport.sendMail(mailOptions)
+       const mailResponse = await transporter.sendMail(mailOptions)
        return mailResponse
 
     } catch (error: any) {
