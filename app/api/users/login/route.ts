@@ -1,12 +1,9 @@
 import { connectDB } from "@/lib/config/database";
 import User from "@/lib/model/userModel";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import bcryptjs from "bcryptjs"
 import jwt from "jsonwebtoken"
 
-// token secret
-// cookies
-// token and jwt
 
 await connectDB()
 
