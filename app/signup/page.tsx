@@ -47,11 +47,11 @@ const Signup = () => {
       <hr />
       <form className="min-w-[500px] flex flex-col gap-2">
         <label htmlFor="username">Username: </label>
-        <input type="text" id="username" placeholder="mussadiqkhan" name="username" onChange={handleChange} value={user.username} className="outline-none w-full border border-gray-500 px-3 py-1.5" />
+        <input type="text" autoComplete="off" id="username" placeholder="mussadiqkhan" name="username" onChange={handleChange} value={user.username} className="outline-none w-full border border-gray-500 px-3 py-1.5" />
         <label htmlFor="password">Password: </label>
-        <input type="password" id="password" placeholder="6886" name="password" onChange={handleChange} value={user.password} className="outline-none w-full border border-gray-500 px-3 py-1.5" />
+        <input type="password"  autoComplete="off"  id="password" placeholder="6886" name="password" onChange={handleChange} value={user.password} className="outline-none w-full border border-gray-500 px-3 py-1.5" />
         <label htmlFor="email">Email: </label>
-        <input type="text" id="email" placeholder="mussadiqkhan@gmail.com" name="email" onChange={handleChange} value={user.email} className="outline-none w-full border border-gray-500 px-3 py-1.5" />
+        <input type="email"  id="email" placeholder="mussadiqkhan@gmail.com" name="email" onChange={handleChange} value={user.email} className="outline-none w-full border border-gray-500 px-3 py-1.5" />
         <button className={`px-4 mt-5  py-1.5 border border-gray-600  ${buttonDisabled ? "cursor-not-allowed opacity-50 text-gray-500": "cursor-pointer opacity-100 text-white hover:bg-gray-800"}`} onClick={signUp}>{loading ? "Processing" : "Signup"}</button>
         <Link className="text-center" href={"/login"}>Login page</Link>
       </form>
