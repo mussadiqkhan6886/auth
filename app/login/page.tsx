@@ -5,13 +5,14 @@ import { useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
 
 const Login = () => {
-
+  const router = useRouter()
   const [user, setUser ] = useState({
     email: "",
     password: "",
   })
   
   const [buttonDisabled, setButtonDisabled] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const login = async () => {
 
