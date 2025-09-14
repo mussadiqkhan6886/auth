@@ -49,7 +49,7 @@ const Login = () => {
         <label htmlFor="password">Password: </label>
         <input type="password" autoComplete="off"  id="password" placeholder="6886" name="password" onChange={handleChange} value={user.password} className="outline-none w-full border border-gray-500 px-3 py-1.5" />
         <label htmlFor="email">Email: </label>
-        <input type="text" id="email" placeholder="mussadiqkhan@gmail.com" name="email" onChange={handleChange} value={user.email} className="outline-none w-full border border-gray-500 px-3 py-1.5" />
+        <input type="email" id="email" placeholder="mussadiqkhan@gmail.com" name="email" onChange={handleChange} value={user.email} className="outline-none w-full border border-gray-500 px-3 py-1.5" />
        <button className={`px-4 mt-5  py-1.5 border border-gray-600  ${buttonDisabled ? "cursor-not-allowed opacity-50 text-gray-500": "cursor-pointer opacity-100 text-white hover:bg-gray-800"}`}>{loading ? "processing" : "Login"}</button>
         <Link className="text-center" href={"/signup"}>Signup page</Link>
       </form>
