@@ -1,11 +1,20 @@
 'use client';
 
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import React from 'react'
 
 const Profile = () => {
 
-  const logout = () => {
+  const router = useRouter()
 
+  const logout = async () => {
+    try {
+      const res = await axios.get("/api/users/logout")
+      router.push("/login")
+    } catch (error: any) {
+      console.log(error.message)
+    }
   }
 
   return (
@@ -14,7 +23,7 @@ const Profile = () => {
       <hr />
       <p className='text-gray-100'>Profile Page</p>
       <hr />
-      <button className="bg-red-400 px-4 py-1.5 border border-red-600 text-white" onClick={logout}>Logout</button>
+      <button className="bg-red-400 mt-4 hover:bg-red-800 cursor-pointer px-4 py-1.5 border border-red-600 text-white" onClick={logout}>Logout</button>
     </div>
   )
 }
