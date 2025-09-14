@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import Link from "next/link";
-import { useState, useEffect, ChangeEvent } from "react";
+import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 
 const ChangePassword = () => {
 
@@ -18,7 +18,8 @@ const ChangePassword = () => {
     const [message, setMessage] = useState("")
     const {newPassword} = data
 
-    const change = async () => {
+    const change = async (e: FormEvent) => {
+        e.preventDefault()
         try {
             setLoading(true)
             setMessage("")
