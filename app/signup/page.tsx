@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
+import axios from "axios"
 
 const Signup = () => {
 
@@ -13,9 +14,19 @@ const Signup = () => {
     username: ""
   })
   const [buttonDisabled, setButtonDisabled] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const signUp = async () => {
-
+    try{
+      setLoading(true)
+      const res = await axios.post("/api/users/signup", user)
+      console.log(res)
+      router.push("/login")
+    }catch(err: any){
+      console.log(err.message)
+    }finally{
+      setLoading(false)
+    }
   }
 
   useEffect(() => {
@@ -41,7 +52,7 @@ const Signup = () => {
         <input type="password" id="password" placeholder="6886" name="password" onChange={handleChange} value={user.password} className="outline-none w-full border border-gray-500 px-3 py-1.5" />
         <label htmlFor="email">Email: </label>
         <input type="text" id="email" placeholder="mussadiqkhan@gmail.com" name="email" onChange={handleChange} value={user.email} className="outline-none w-full border border-gray-500 px-3 py-1.5" />
-        <button className={`px-4 mt-5  py-1.5 border border-gray-600  ${buttonDisabled ? "cursor-not-allowed opacity-50 text-gray-500": "cursor-pointer opacity-100 text-white hover:bg-gray-800"}`} onClick={signUp}>Signup</button>
+        <button className={`px-4 mt-5  py-1.5 border border-gray-600  ${buttonDisabled ? "cursor-not-allowed opacity-50 text-gray-500": "cursor-pointer opacity-100 text-white hover:bg-gray-800"}`} onClick={signUp}>{loading ? "Processing" : "Signup"}</button>
         <Link className="text-center" href={"/login"}>Login page</Link>
       </form>
     </div>
