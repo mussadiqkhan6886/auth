@@ -2,19 +2,29 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 const Signup = () => {
 
+  const router = useRouter()
   const [user, setUser ] = useState({
     email: "",
     password: "",
     username: ""
   })
+  const [buttonDisabled, setButtonDisabled] = useState(false)
 
   const signUp = async () => {
 
   }
+
+  useEffect(() => {
+    if(user.email.length > 0 && user.password.length > 0 && user.username.length > 0){
+      setButtonDisabled(false)
+    }else{
+      setButtonDisabled(true)
+    }
+  }, [user])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUser({...user, [e.target.name]: e.target.value})
@@ -31,7 +41,7 @@ const Signup = () => {
         <input type="password" id="password" placeholder="6886" name="password" onChange={handleChange} value={user.password} className="outline-none w-full border border-gray-500 px-3 py-1.5" />
         <label htmlFor="email">Email: </label>
         <input type="text" id="email" placeholder="mussadiqkhan@gmail.com" name="email" onChange={handleChange} value={user.email} className="outline-none w-full border border-gray-500 px-3 py-1.5" />
-        <button className="px-4 mt-5 hover:bg-gray-800 py-1.5 border border-gray-600 text-white" onClick={signUp}>Signup</button>
+        <button className={`px-4 mt-5  py-1.5 border border-gray-600  ${buttonDisabled ? "cursor-not-allowed opacity-50 text-gray-500": "cursor-pointer opacity-100 text-white hover:bg-gray-800"}`} onClick={signUp}>Signup</button>
         <Link className="text-center" href={"/login"}>Login page</Link>
       </form>
     </div>
