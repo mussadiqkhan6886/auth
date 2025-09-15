@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import axios from "axios"
+import { sendEmail } from "@/helpers/mailer";
 
 const Login = () => {
   const router = useRouter()
@@ -41,6 +42,10 @@ const Login = () => {
     setUser({...user, [e.target.name]: e.target.value})
   }
 
+  const send = async () => {
+    await sendEmail({email, emailType: "RESET", userId: savedUser._id})
+  }
+
   return (
     <div className="h-screen flex-col text-white bg-gray-900 flex justify-center items-center">
       <h1 className="text-3xl font-semibold text-gray-100 text-center mb-4">Login</h1>
@@ -53,6 +58,7 @@ const Login = () => {
        <button className={`px-4 mt-5  py-1.5 border border-gray-600  ${buttonDisabled ? "cursor-not-allowed opacity-50 text-gray-500": "cursor-pointer opacity-100 text-white hover:bg-gray-800"}`}>{loading ? "processing" : "Login"}</button>
         <Link className="text-center" href={"/signup"}>Signup page</Link>
       </form>
+      <p onClick={send}>Forgot Password</p>
     </div>
   )
 }
